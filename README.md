@@ -1,3 +1,2 @@
 # Thesis
-Finding upstream features in spatial networks
-Python graph traversal
+Finding upstream features in spatial networks using Python graph traversal
