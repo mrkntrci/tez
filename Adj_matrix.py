@@ -21,16 +21,21 @@ for i in range(0,len(data['rows'])):
 #for item in to_vertices:
 #    print(item)
 
-edges = []
-matrix =[from_vertices,to_vertices]
-#for i in matrix:
-#    print(i[1])
+edges = zip(from_vertices,to_vertices)
+
+matrix = []
+matrix.append(from_vertices)
+matrix.append(to_vertices)
 
 for i in matrix:
-    for j in range(16):
-        edges.append(i[j])
-for item in edges:
-    print(item)
-print(len(edges))
+    print(i)
 
-rows = data['rows']
+empty_list =  []
+for  i in range(len(from_vertices)):
+    if from_vertices[i] not in empty_list:
+        empty_list.append(from_vertices[i])
+        from_vertices[i] = i
+    elif from_vertices[i]  in empty_list:
+        same_one = from_vertices[i]
+        from_vertices[i] = empty_list.index(same_one)
+print(from_vertices)
