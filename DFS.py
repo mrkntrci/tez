@@ -5,7 +5,7 @@ start = time.time()
 #from dataStructures import *
 
 # Open the data set
-with open('EsriNapervilleElectricNetwork.json') as f:
+with open('SampleDataset1.json') as f:
     data = json.load(f)
 
 ##pprint(data)
@@ -52,7 +52,7 @@ def dfs_recursive(graph, vertex, path=[]):
 
     return path
 
-#print(dfs_recursive(entities, '{CBCCD952-2D03-40C9-A8CA-0C126A2D7EF8}'))
+print(dfs_recursive(entities, '{7FC28536-6F4A-4A9A-B439-1D87AE2D8871}'))
 
 def dfs_iterative(graph, start):
     stack, path = [start], []
@@ -66,6 +66,6 @@ def dfs_iterative(graph, start):
             stack.append(neighbor)
 
     return path
-print(dfs_iterative(entities, '{CBCCD952-2D03-40C9-A8CA-0C126A2D7EF8}'))
+#print(dfs_iterative(entities, '{7FC28536-6F4A-4A9A-B439-1D87AE2D8871}'))
 end = time.time()
 print(end - start)
