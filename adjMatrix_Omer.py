@@ -1,9 +1,5 @@
 import json
 from pprint import pprint
-import time
-
-start = time.time()
-#from dataStructures import *
 
 # Open the data set
 with open('SampleDataset1.json') as f:
@@ -17,10 +13,11 @@ with open('SampleDataset1.json') as f:
 #print(data["rows"][1]["fromGlobalId"])
 
 # How many edges are there?
+numEdges = len(data["rows"])
 
 entities = {}
-#print(len(data['rows']))
-for e in range(len(data["rows"])):
+
+for e in range(numEdges):
     # Check whether the entity has been created previously?
     fromID = data['rows'][e]['fromGlobalId']
     toID = data['rows'][e]['toGlobalId']
@@ -43,7 +40,16 @@ for e in range(len(data["rows"])):
     else:
         entities[toID] = []
         entities[toID].append(fromID)
-#Graph dictionary
+
+# controllers IDs
+numControllers = len(data["controllers"])
+#print("Number of controllers: ", numControllers)
+
+#print("Controller IDs: ")
+controllerIDs = []
+for c in range(numControllers):
+    controllerIDs.append(data['controllers'][c]['globalId'])
+
 ids = {}
 
 c = 0
@@ -66,33 +72,3 @@ for k,v in entities.items():
     for i in range(numAdjacents):
         print("ID: ", ids[k], "Neighbour ID: ", ids[v[i]])
         adjacencyMatrix[ids[k]][ids[v[i]]] = 1
-
-
-def dfs_recursive(graph, vertex, path=[]):
-    path += [vertex]
-
-    for neighbor in graph[vertex]:
-        if neighbor not in path:
-            path = dfs_recursive(graph, neighbor, path)
-
-    return path
-#In the recursive method first element of dictionary is considered as neighbor
-print(dfs_recursive(entities, '{7FC28536-6F4A-4A9A-B439-1D87AE2D8871}'))
-
-def dfs_iterative(graph, start):
-    stack, path = [start], []
-
-    while stack:
-        vertex = stack.pop()
-        if vertex in path: # instead of continue, "if vertex not in path" may have been used.
-            continue
-        path.append(vertex)
-        for neighbor in graph[vertex]:
-            stack.append(neighbor)
-
-    return path
-#print(dfs_iterative(entities, '{7FC28536-6F4A-4A9A-B439-1D87AE2D8871}'))
-#iterative method gets the neighbor at the end of the dictionary. last element
-#of the dictionary gets checled at first
-end = time.time()
-print(end - start)

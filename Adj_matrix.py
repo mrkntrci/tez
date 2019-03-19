@@ -11,7 +11,6 @@ for i in range(0,len(data['rows'])):
 #for item in from_vertices:
 #    print(item)
 
-
 ###find to receiving vertices and append them in a list
 
 to_vertices= []
